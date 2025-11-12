@@ -17,7 +17,7 @@ const navItems: NavItem[] = [
   { id: "weakness", label: "Weakness" },
   { id: "credits", label: "Credits" },
   { id: "honors", label: "Honors Add-Ons" },
-  { id: "extended", label: "Extended 150%" },
+  { id: "extended", label: "Extended" },
 ];
 
 interface ScrollNavigationProps {
