@@ -3,23 +3,30 @@
 export interface CheaterDetection {
   offTabTime: number; // seconds while hidden/blurred
   suspiciousActions: number; // copy/right-click count
+  tabSwitches: number; // number of times user switched tabs
   isCheater: boolean; // true if offTabTime >= 5s
 }
+
+export type TabSwitchCallback = (totalOffTabTime: number, tabSwitches: number) => void;
 
 export class CheaterDetector {
   private startTime: number = 0;
   private lastVisibleTime: number = 0;
   private totalOffTabTime: number = 0;
   private suspiciousActions: number = 0;
+  private tabSwitches: number = 0;
   private isActive: boolean = false;
   private isVisible: boolean = true;
+  private onTabSwitchCallback?: TabSwitchCallback;
 
-  start(): void {
+  start(onTabSwitch?: TabSwitchCallback): void {
     this.startTime = Date.now();
     this.lastVisibleTime = Date.now();
     this.totalOffTabTime = 0;
     this.suspiciousActions = 0;
+    this.tabSwitches = 0;
     this.isActive = true;
+    this.onTabSwitchCallback = onTabSwitch;
     this.isVisible = document.visibilityState === 'visible' && document.hasFocus();
 
     // Listen to visibility changes
@@ -52,6 +59,7 @@ export class CheaterDetector {
     return {
       offTabTime: Math.round(this.totalOffTabTime),
       suspiciousActions: this.suspiciousActions,
+      tabSwitches: this.tabSwitches,
       isCheater: this.totalOffTabTime >= 5,
     };
   }
@@ -60,27 +68,59 @@ export class CheaterDetector {
     if (!this.isActive) return;
 
     const wasVisible = this.isVisible;
-    this.isVisible = document.visibilityState === 'visible';
+    const isNowVisible = document.visibilityState === 'visible';
 
-    if (wasVisible && !this.isVisible) {
-      // Just became hidden
+    if (wasVisible && !isNowVisible) {
+      // Tab became hidden - user switched away
+      this.isVisible = false;
       this.lastVisibleTime = Date.now();
-    } else if (!wasVisible && this.isVisible) {
-      // Just became visible
-      this.totalOffTabTime += (Date.now() - this.lastVisibleTime) / 1000;
+      this.tabSwitches++;
+      
+      // Trigger callback immediately
+      if (this.onTabSwitchCallback) {
+        this.onTabSwitchCallback(Math.round(this.totalOffTabTime), this.tabSwitches);
+      }
+    } else if (!wasVisible && isNowVisible) {
+      // Tab became visible - user returned
+      const timeAway = (Date.now() - this.lastVisibleTime) / 1000;
+      this.totalOffTabTime += timeAway;
+      this.isVisible = true;
+      
+      // Trigger callback when returning
+      if (this.onTabSwitchCallback) {
+        this.onTabSwitchCallback(Math.round(this.totalOffTabTime), this.tabSwitches);
+      }
     }
   };
 
   private handleBlur = (): void => {
-    if (!this.isActive || !this.isVisible) return;
-    this.isVisible = false;
-    this.lastVisibleTime = Date.now();
+    if (!this.isActive) return;
+    
+    // Window lost focus (new window opened, clicked outside browser, etc.)
+    if (this.isVisible) {
+      this.isVisible = false;
+      this.lastVisibleTime = Date.now();
+      this.tabSwitches++;
+      
+      if (this.onTabSwitchCallback) {
+        this.onTabSwitchCallback(Math.round(this.totalOffTabTime), this.tabSwitches);
+      }
+    }
   };
 
   private handleFocus = (): void => {
-    if (!this.isActive || this.isVisible) return;
-    this.isVisible = true;
-    this.totalOffTabTime += (Date.now() - this.lastVisibleTime) / 1000;
+    if (!this.isActive) return;
+    
+    // Window regained focus
+    if (!this.isVisible) {
+      const timeAway = (Date.now() - this.lastVisibleTime) / 1000;
+      this.totalOffTabTime += timeAway;
+      this.isVisible = true;
+      
+      if (this.onTabSwitchCallback) {
+        this.onTabSwitchCallback(Math.round(this.totalOffTabTime), this.tabSwitches);
+      }
+    }
   };
 
   private handleSuspiciousAction = (): void => {
@@ -94,9 +134,14 @@ export class CheaterDetector {
     if ((e.ctrlKey || e.metaKey) && e.key === 'a') {
       this.suspiciousActions++;
     }
+    // Detect Ctrl/Cmd + T (new tab), Ctrl/Cmd + N (new window)
+    if ((e.ctrlKey || e.metaKey) && (e.key === 't' || e.key === 'n')) {
+      this.suspiciousActions++;
+      this.tabSwitches++;
+    }
   };
 
-  getStatus(): { offTabTime: number; suspiciousActions: number } {
+  getStatus(): { offTabTime: number; suspiciousActions: number; tabSwitches: number } {
     let currentOffTab = this.totalOffTabTime;
     if (!this.isVisible && this.isActive) {
       currentOffTab += (Date.now() - this.lastVisibleTime) / 1000;
@@ -104,6 +149,7 @@ export class CheaterDetector {
     return {
       offTabTime: Math.round(currentOffTab),
       suspiciousActions: this.suspiciousActions,
+      tabSwitches: this.tabSwitches,
     };
   }
 }

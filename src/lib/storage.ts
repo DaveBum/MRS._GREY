@@ -7,6 +7,7 @@ export interface LeaderboardEntry {
   dateISO: string;
   cheater: boolean;
   suspiciousActions: number;
+  tabSwitches?: number;
   attempts: number;
   uuid: string;
 }
@@ -83,9 +84,9 @@ export const storage = {
 
   exportToCSV(): string {
     const entries = this.getLeaderboard();
-    const header = 'Name,Score %,Time (s),Date,Cheater,Suspicious Actions,Attempts\n';
+    const header = 'Name,Score %,Time (s),Date,Cheater,Tab Switches,Suspicious Actions,Attempts\n';
     const rows = entries.map(e => 
-      `"${e.name}",${e.scorePercent},${e.timeSeconds},"${e.dateISO}",${e.cheater},${e.suspiciousActions},${e.attempts}`
+      `"${e.name}",${e.scorePercent},${e.timeSeconds},"${e.dateISO}",${e.cheater},${e.tabSwitches || 0},${e.suspiciousActions},${e.attempts}`
     ).join('\n');
     return header + rows;
   },

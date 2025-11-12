@@ -26,9 +26,20 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<Map<string, string>>(new Map());
   const [startTime] = useState(Date.now());
+  const [showWarning, setShowWarning] = useState(false);
+  const [tabSwitchCount, setTabSwitchCount] = useState(0);
   const [detector] = useState(() => {
     const d = new CheaterDetector();
-    d.start();
+    d.start((offTabTime, tabSwitches) => {
+      setTabSwitchCount(tabSwitches);
+      setShowWarning(true);
+      toast.error(`Warning: Tab switching detected! (${tabSwitches} times, ${offTabTime}s total)`, {
+        duration: 5000,
+      });
+      
+      // Hide warning after 10 seconds
+      setTimeout(() => setShowWarning(false), 10000);
+    });
     return d;
   });
   const [showResult, setShowResult] = useState(false);
@@ -95,6 +106,7 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
       dateISO: new Date().toISOString(),
       cheater: cheaterData.isCheater,
       suspiciousActions: cheaterData.suspiciousActions,
+      tabSwitches: cheaterData.tabSwitches,
     });
     
     setShowResult(true);
@@ -163,15 +175,15 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
                   Cheater Flag
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  You left this tab for {cheaterData.offTabTime} seconds during the quiz. 
-                  This has been recorded on the leaderboard.
+                  You switched tabs/windows {cheaterData.tabSwitches} time(s) and spent {cheaterData.offTabTime} seconds 
+                  away from this quiz. This has been recorded on the leaderboard.
                 </p>
               </div>
             )}
             
             {cheaterData.suspiciousActions > 0 && (
               <div className="text-sm text-muted-foreground">
-                Suspicious actions detected: {cheaterData.suspiciousActions} (copy/right-click events)
+                Suspicious actions detected: {cheaterData.suspiciousActions} (copy/paste/keyboard shortcuts)
               </div>
             )}
             
@@ -191,6 +203,18 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
 
   return (
     <div className="max-w-3xl mx-auto">
+      {showWarning && (
+        <div className="mb-4 p-4 bg-destructive/10 border-2 border-destructive rounded-lg animate-pulse">
+          <div className="flex items-center gap-2 text-destructive font-semibold">
+            <AlertTriangle className="w-5 h-5" />
+            Warning: Tab switching detected! ({tabSwitchCount} time(s))
+          </div>
+          <p className="text-sm text-muted-foreground mt-1">
+            This activity is being tracked and will be flagged on the leaderboard.
+          </p>
+        </div>
+      )}
+      
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium">

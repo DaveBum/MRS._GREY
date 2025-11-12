@@ -221,6 +221,7 @@ export function Leaderboard() {
                 <TableHead className="font-bold">Score</TableHead>
                 <TableHead className="font-bold">Time</TableHead>
                 <TableHead className="font-bold">Date</TableHead>
+                <TableHead className="font-bold text-center">Tab Switches</TableHead>
                 <TableHead className="font-bold text-center">Cheater?</TableHead>
                 <TableHead className="font-bold text-center">Suspicious</TableHead>
                 <TableHead className="font-bold text-center">Attempts</TableHead>
@@ -243,6 +244,13 @@ export function Leaderboard() {
                   </TableCell>
                   <TableCell className="text-muted-foreground">{formatTime(entry.timeSeconds)}</TableCell>
                   <TableCell className="text-sm text-muted-foreground">{formatDate(entry.dateISO)}</TableCell>
+                  <TableCell className="text-center">
+                    {entry.tabSwitches && entry.tabSwitches > 0 ? (
+                      <span className="text-destructive font-medium">{entry.tabSwitches}</span>
+                    ) : (
+                      <span className="text-muted-foreground">—</span>
+                    )}
+                  </TableCell>
                   <TableCell className="text-center">
                     {entry.cheater ? (
                       <span className="inline-flex items-center gap-1 text-destructive font-medium">
