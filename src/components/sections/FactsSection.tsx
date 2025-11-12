@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ExternalLink, Lightbulb } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 interface FactProps {
   title: string;
@@ -16,12 +16,7 @@ function Fact({ title, content, sources, id, delay = 0 }: FactProps) {
       <Card id={id} className="p-8 bg-gradient-to-br from-card to-card/50 border-2 border-muscle-pink/20 card-hover-glow relative overflow-hidden group">
         <div className="absolute top-0 right-0 w-32 h-32 bg-muscle-yellow/5 rounded-full blur-2xl group-hover:bg-muscle-yellow/10 transition-all duration-500" />
         <div className="relative z-10">
-          <div className="flex items-start gap-3 mb-4">
-            <div className="p-2 bg-muscle-pink/20 rounded-lg mt-1">
-              <Lightbulb className="w-5 h-5 text-muscle-pink" />
-            </div>
-            <h3 className="text-2xl font-bold text-foreground flex-1">{title}</h3>
-          </div>
+          <h3 className="text-2xl font-bold text-foreground mb-4">{title}</h3>
           <p className="text-base leading-relaxed mb-4 text-foreground/90">{content}</p>
           <div className="flex flex-wrap gap-2">
             {sources.map((source, idx) => (

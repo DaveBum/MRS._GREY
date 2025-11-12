@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ExternalLink, Zap } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import beforeAfterImage from "@/assets/before-after-ca2.png";
 
 export function HowItWorksSection() {
@@ -15,12 +15,7 @@ export function HowItWorksSection() {
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-muscle-pink/10 rounded-full blur-3xl" />
           
           <div className="relative z-10">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-3 bg-muscle-yellow/20 rounded-xl">
-                <Zap className="w-8 h-8 text-muscle-yellow" />
-              </div>
-              <h3 className="text-2xl font-bold text-foreground">The Mechanism</h3>
-            </div>
+            <h3 className="text-2xl font-bold text-foreground mb-6">The Mechanism</h3>
             
             <p className="text-xl leading-relaxed text-foreground/90 font-medium">
               I amplify <span className="text-muscle-pink font-bold">calcium release</span> and speed <span className="text-muscle-yellow font-bold">ATP turnover</span>, so more motor units fire together and cross-bridge cycling is faster—turning pink "normal" fibers into bright yellow "super" fibers.

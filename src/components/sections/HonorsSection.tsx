@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ExternalLink, Sparkles, Shield } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export function HonorsSection() {
   return (
@@ -14,12 +14,7 @@ export function HonorsSection() {
           <Card className="p-10 bg-gradient-to-br from-card to-card/50 border-2 border-muscle-yellow/30 card-hover-glow relative overflow-hidden">
             <div className="absolute top-0 right-0 w-48 h-48 bg-muscle-yellow/10 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-muscle-yellow/20 rounded-xl">
-                  <Sparkles className="w-8 h-8 text-muscle-yellow" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-3xl font-bold mb-4 gradient-text">Real Science Use</h3>
+              <h3 className="text-3xl font-bold mb-4 gradient-text">Real Science Use</h3>
                   <p className="text-lg leading-relaxed mb-4 text-foreground/90">
                     This power could accelerate <span className="text-muscle-yellow font-semibold">rehab for people with muscle loss or injury</span> by improving safe fiber recruitment and strength. (Conceptually grounded in motor-unit control and hypertrophy science.)
                   </p>
@@ -32,8 +27,6 @@ export function HonorsSection() {
                     Source
                     <ExternalLink className="w-3 h-3" />
                   </a>
-                </div>
-              </div>
             </div>
           </Card>
         </ScrollReveal>
@@ -42,12 +35,7 @@ export function HonorsSection() {
           <Card className="p-10 bg-gradient-to-br from-destructive/10 to-destructive/5 border-2 border-destructive/30 card-hover-glow relative overflow-hidden">
             <div className="absolute top-0 left-0 w-48 h-48 bg-destructive/10 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-destructive/20 rounded-xl">
-                  <Shield className="w-8 h-8 text-destructive" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-3xl font-bold mb-4 text-destructive">Power Limit</h3>
+              <h3 className="text-3xl font-bold mb-4 text-destructive">Power Limit</h3>
                   <p className="text-lg leading-relaxed mb-4 text-foreground/90">
                     If pushed too far, extreme exertion risks <span className="text-destructive font-semibold">tendon/ligament injury</span> and <span className="text-destructive font-semibold">rhabdomyolysis</span> (muscle breakdown that can harm the kidneys)—so power must be limited.
                   </p>
@@ -71,8 +59,6 @@ export function HonorsSection() {
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   </div>
-                </div>
-              </div>
             </div>
           </Card>
         </ScrollReveal>

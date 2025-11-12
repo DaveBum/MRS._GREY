@@ -1,5 +1,4 @@
 import heroImage from "@/assets/muscle-titan-hero.png";
-import { Sparkles } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -17,9 +16,6 @@ export function HeroSection() {
             alt="Muscle Titan hero artwork with braided muscle bundles showing normal pink fibers transforming into glowing yellow super fibers"
             className="mx-auto w-full max-w-3xl rounded-3xl shadow-2xl card-glow animate-float"
           />
-          <div className="absolute -top-4 -right-4 bg-gradient-to-r from-muscle-pink to-muscle-yellow p-4 rounded-2xl shadow-lg animate-pulse-glow">
-            <Sparkles className="w-8 h-8 text-white" />
-          </div>
         </div>
 
         <div className="space-y-6">

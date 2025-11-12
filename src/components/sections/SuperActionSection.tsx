@@ -1,19 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ExternalLink, Zap, Flame } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export function SuperActionSection() {
   return (
     <section className="container mx-auto px-4 py-16 max-w-4xl">
       <ScrollReveal>
         <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-4 mb-4">
-            <Flame className="w-12 h-12 text-muscle-yellow animate-pulse-glow" />
-            <h2 className="text-5xl font-black gradient-text">
-              Super Action
-            </h2>
-            <Zap className="w-12 h-12 text-muscle-pink animate-pulse-glow" />
-          </div>
+          <h2 className="text-5xl font-black gradient-text">
+            Super Action
+          </h2>
         </div>
       </ScrollReveal>
       

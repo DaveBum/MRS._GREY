@@ -5,7 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { ExternalLink, Zap } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -20,13 +20,9 @@ export function ExtendedSection() {
     <section className="container mx-auto px-4 py-16 max-w-5xl">
       <ScrollReveal>
         <div className="mb-12 text-center">
-          <div className="inline-flex items-center gap-3 mb-6">
-            <Zap className="w-12 h-12 text-muscle-yellow animate-pulse-glow" />
-            <h2 className="text-5xl md:text-6xl font-black gradient-text">
-              Beyond Human Limits
-            </h2>
-            <Zap className="w-12 h-12 text-muscle-pink animate-pulse-glow" />
-          </div>
+          <h2 className="text-5xl md:text-6xl font-black gradient-text mb-6">
+            Beyond Human Limits
+          </h2>
           <p className="text-2xl font-bold mb-4 text-foreground/90">
             From Muscle Fiber to Bio-Engineered Power System
           </p>
