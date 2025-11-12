@@ -39,8 +39,8 @@ export function NameGate({ onNameSubmit }: NameGateProps) {
   };
 
   return (
-    <div className="container mx-auto px-4 py-16 max-w-2xl">
-      <Card className="p-8 bg-card border-2">
+    <div className="max-w-2xl mx-auto">
+      <Card className="p-6 bg-card border-2">
         <div className="flex items-center gap-3 mb-6">
           <User className="w-8 h-8 text-primary" />
           <h2 className="text-3xl font-bold text-muscle-dark">Enter Your Name</h2>

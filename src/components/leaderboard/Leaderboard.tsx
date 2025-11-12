@@ -101,8 +101,8 @@ export function Leaderboard() {
 
   if (entries.length === 0) {
     return (
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
-        <Card className="p-12 text-center bg-card border-2">
+      <div className="max-w-4xl mx-auto">
+        <Card className="p-8 text-center bg-card border-2">
           <Trophy className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
           <h2 className="text-2xl font-bold mb-2 text-muscle-dark">No Entries Yet</h2>
           <p className="text-muted-foreground mb-6">
@@ -114,15 +114,12 @@ export function Leaderboard() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-6xl">
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <Trophy className="w-10 h-10 text-muscle-yellow" />
-          <h2 className="text-4xl font-bold text-muscle-dark">Leaderboard</h2>
+    <div className="max-w-6xl mx-auto">
+      <div className="mb-6">
+        <div className="flex items-center gap-3 mb-2">
+          <Trophy className="w-8 h-8 text-muscle-yellow" />
+          <h3 className="text-2xl font-bold text-muscle-dark">All Attempts</h3>
         </div>
-        <p className="text-muted-foreground">
-          View all quiz attempts and compete for the top score!
-        </p>
       </div>
 
       <div className="mb-6 flex flex-wrap gap-3">

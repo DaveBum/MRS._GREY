@@ -116,8 +116,8 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
     const isCheater = cheaterData.offTabTime >= 5;
 
     return (
-      <div className="container mx-auto px-4 py-16 max-w-3xl">
-        <Card className="p-8 bg-card border-2">
+      <div className="max-w-3xl mx-auto">
+        <Card className="p-6 bg-card border-2">
           <div className="text-center space-y-6">
             <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${
               scorePercent >= 70 ? 'bg-green-100 text-green-600' : 'bg-destructive/10 text-destructive'
@@ -190,7 +190,7 @@ export function QuizEngine({ userName, onComplete }: QuizEngineProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-3xl">
+    <div className="max-w-3xl mx-auto">
       <div className="mb-6">
         <div className="flex items-center justify-between mb-2">
           <span className="text-sm font-medium">
