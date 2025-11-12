@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import daveBaumPhoto from "@/assets/dave-baum-photo.jpg";
 
 export function CreditsSection() {
   return (
@@ -19,6 +20,13 @@ export function CreditsSection() {
             
             <div>
               <p className="text-4xl font-black gradient-text mb-3">Dave Baum</p>
+              <div className="flex justify-center mb-4">
+                <img 
+                  src={daveBaumPhoto} 
+                  alt="Dave Baum" 
+                  className="w-40 h-40 rounded-full object-cover border-4 border-primary/30 shadow-lg"
+                />
+              </div>
               <p className="text-2xl text-foreground/80 font-semibold">Mrs. Greys Science Class</p>
             </div>
             
