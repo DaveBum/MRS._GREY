@@ -19,9 +19,9 @@ export function ScrollProgress() {
   }, []);
 
   return (
-    <div className="fixed top-16 left-0 right-0 h-1 bg-muted z-40">
+    <div className="fixed top-16 left-0 right-0 h-1 bg-muscle-dark/50 z-40">
       <div
-        className="h-full bg-muscle-yellow transition-all duration-150 ease-out"
+        className="h-full bg-gradient-to-r from-muscle-pink via-muscle-yellow to-muscle-pink transition-all duration-150 ease-out shadow-glow-yellow"
         style={{ width: `${progress}%` }}
         role="progressbar"
         aria-valuenow={progress}

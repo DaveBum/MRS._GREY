@@ -4,7 +4,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ExternalLink } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
+import { ExternalLink, Zap } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -16,24 +17,30 @@ import {
 
 export function ExtendedSection() {
   return (
-    <section className="container mx-auto px-4 py-16 max-w-4xl">
-      <div className="mb-8">
-        <h2 className="text-4xl font-bold mb-4 text-muscle-dark">
-          ⚡ MUSCLE TITAN — Beyond Human Limits
-        </h2>
-        <p className="text-xl font-semibold mb-4">
-          From Muscle Fiber to Bio-Engineered Power System
-        </p>
-        <p className="text-lg leading-relaxed text-muted-foreground">
-          Human strength depends on an extraordinary choreography between cells, chemistry, and electricity. 
-          Muscle Titan isn't fantasy—it's an extrapolation of genuine frontier science. What if every step 
-          in muscular performance were optimized to its theoretical limit?
-        </p>
-      </div>
+    <section className="container mx-auto px-4 py-16 max-w-5xl">
+      <ScrollReveal>
+        <div className="mb-12 text-center">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <Zap className="w-12 h-12 text-muscle-yellow animate-pulse-glow" />
+            <h2 className="text-5xl md:text-6xl font-black gradient-text">
+              Beyond Human Limits
+            </h2>
+            <Zap className="w-12 h-12 text-muscle-pink animate-pulse-glow" />
+          </div>
+          <p className="text-2xl font-bold mb-4 text-foreground/90">
+            From Muscle Fiber to Bio-Engineered Power System
+          </p>
+          <p className="text-lg leading-relaxed text-muted-foreground max-w-3xl mx-auto">
+            Human strength depends on an extraordinary choreography between cells, chemistry, and electricity. 
+            Muscle Titan isn't fantasy—it's an extrapolation of genuine frontier science. What if every step 
+            in muscular performance were optimized to its theoretical limit?
+          </p>
+        </div>
+      </ScrollReveal>
 
-      <Accordion type="single" collapsible className="space-y-4">
-        <AccordionItem value="item-1" className="border rounded-lg px-6">
-          <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+      <Accordion type="single" collapsible className="space-y-6">
+        <AccordionItem value="item-1" className="bg-gradient-to-br from-card to-card/50 border-2 border-muscle-pink/20 rounded-xl px-8 card-hover-glow">
+          <AccordionTrigger className="text-xl font-bold hover:no-underline text-foreground py-6">
             1. Cellular Architecture Upgrade 🧬
           </AccordionTrigger>
           <AccordionContent className="text-base leading-relaxed space-y-4 pt-4">
@@ -58,8 +65,8 @@ export function ExtendedSection() {
           </AccordionContent>
         </AccordionItem>
 
-        <AccordionItem value="item-2" className="border rounded-lg px-6">
-          <AccordionTrigger className="text-lg font-semibold hover:no-underline">
+        <AccordionItem value="item-2" className="bg-gradient-to-br from-card to-card/50 border-2 border-muscle-pink/20 rounded-xl px-8 card-hover-glow">
+          <AccordionTrigger className="text-xl font-bold hover:no-underline text-foreground py-6">
             2. Bio-Energetic Optimization 🔋
           </AccordionTrigger>
           <AccordionContent className="text-base leading-relaxed space-y-4 pt-4">

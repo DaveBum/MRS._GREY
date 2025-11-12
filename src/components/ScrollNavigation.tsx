@@ -67,11 +67,11 @@ export function ScrollNavigation({ onQuizClick, onLeaderboardClick }: ScrollNavi
 
   return (
     <>
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav className="sticky top-0 z-50 glass-effect border-b border-border/50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-2">
-              <h1 className="text-xl font-bold text-muscle-dark">MUSCLE TITAN</h1>
+              <h1 className="text-xl font-black gradient-text">MUSCLE TITAN</h1>
             </div>
 
             {/* Desktop Navigation */}
@@ -93,10 +93,10 @@ export function ScrollNavigation({ onQuizClick, onLeaderboardClick }: ScrollNavi
               ))}
               
               <div className="ml-4 flex gap-2">
-                <Button onClick={onQuizClick} variant="default" size="sm">
+                <Button onClick={onQuizClick} className="bg-gradient-to-r from-muscle-pink to-muscle-yellow hover:shadow-lg hover:shadow-muscle-pink/50 transition-all" size="sm">
                   Take Quiz
                 </Button>
-                <Button onClick={onLeaderboardClick} variant="outline" size="sm">
+                <Button onClick={onLeaderboardClick} variant="outline" className="border-muscle-pink/50 hover:bg-muscle-pink/10" size="sm">
                   Leaderboard
                 </Button>
               </div>

@@ -62,6 +62,8 @@ export default {
           yellow: "hsl(var(--muscle-yellow))",
           red: "hsl(var(--muscle-red))",
           dark: "hsl(var(--muscle-dark))",
+          "glow-pink": "hsl(var(--muscle-glow-pink))",
+          "glow-yellow": "hsl(var(--muscle-glow-yellow))",
         },
       },
       borderRadius: {
@@ -90,6 +92,8 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 3s ease-in-out infinite",
       },
     },
   },
