@@ -57,6 +57,12 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        muscle: {
+          pink: "hsl(var(--muscle-pink))",
+          yellow: "hsl(var(--muscle-yellow))",
+          red: "hsl(var(--muscle-red))",
+          dark: "hsl(var(--muscle-dark))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
